@@ -24,6 +24,7 @@ SRC          = $(TARGET).c                                                 \
 	           Log.c                                                       \
 	           MassStorage.c                                               \
 	           Power.c                                                     \
+	           Signature.c                                                 \
 	           Time.c                                                      \
 	           Timer.c                                                     \
 	           Tone.c                                                      \
