@@ -9,6 +9,7 @@
 #include "Main.h"
 #include "Tone.h"
 #include "UBX.h"
+#include "Log.h"
 
 #define FALSE 0
 #define TRUE  (!FALSE)
@@ -105,6 +106,9 @@ TZ_Offset: 0     ; Timezone offset of output files in seconds\r\n\
                  ;   -25200 = UTC-7 (MST, PDT)\r\n\
                  ;   -28800 = UTC-8 (PST)\r\n\
 \r\n\
+Dir_Format: 0    ; Directory format\r\n\
+                 ;   0 = YY-MM-DD\r\n\
+                 ;   1 = YYYYMMDD\r\n\
 \r\n\
 ; Alarm settings\r\n\
 \r\n\
@@ -153,6 +157,7 @@ static const char Config_Window[] PROGMEM     = "Window";
 static const char Config_Alarm_Elev[] PROGMEM = "Alarm_Elev";
 static const char Config_Alarm_Type[] PROGMEM = "Alarm_Type";
 static const char Config_TZ_Offset[] PROGMEM  = "TZ_Offset";
+static const char Config_Dir_Format[] PROGMEM = "Dir_Format";
 
 static void Config_WriteString_P(
 	const char *str,
@@ -240,6 +245,7 @@ void Config_Read(void)
 		HANDLE_VALUE(Config_Use_SAS,   UBX_use_sas,      val, val == 0 || val == 1);
 		HANDLE_VALUE(Config_Window,    UBX_alarm_window, val * 1000, TRUE);
 		HANDLE_VALUE(Config_TZ_Offset, Log_tz_offset,    val, TRUE);
+		HANDLE_VALUE(Config_Dir_Format,Log_dir_format,   val, val >= 0 && val <= 1);
 		
 		#undef HANDLE_VALUE
 		
