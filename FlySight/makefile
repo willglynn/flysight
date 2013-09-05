@@ -25,7 +25,6 @@ SRC          = Main.c                                                      \
 	           Config.c                                                    \
 	           Descriptors.c                                               \
 	           Log.c                                                       \
-	           MassStorage.c                                               \
 	           Power.c                                                     \
 	           Signature.c                                                 \
 	           Time.c                                                      \
@@ -33,6 +32,7 @@ SRC          = Main.c                                                      \
 	           Tone.c                                                      \
 	           uart.c                                                      \
 	           UBX.c                                                       \
+	           UsbInterface.c                                              \
 	           FatFS/ff.c                                                  \
 	           FatFS/mmc.c                                                 \
 	           Lib/MMC.c                                                   \
