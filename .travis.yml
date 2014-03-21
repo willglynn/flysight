@@ -7,4 +7,15 @@ install:
 cache: apt
 script: make -C FlySight
 
+after_script:
+  # Pin Faraday to 0.8.9 due to travis-ci/travis-artifacts#23
+  - "gem install --no-rdoc --no-ri --version 0.8.9 faraday"
+  - "gem install --no-rdoc --no-ri travis-artifacts"
+  - "travis-artifacts upload --path FlySight/Main.hex:main.hex --target-path $TRAVIS_REPO_SLUG/$TRAVIS_COMMIT/$TRAVIS_JOB_ID --clone-path $TRAVIS_REPO_SLUG/$TRAVIS_COMMIT"
 
+env:
+  global:
+    # Artifact uploading for willglynn/flysight
+    - secure: "CYZ8IvCZE9+Towmyk83G7YCfbgTyxVQ6XFSpFN3/JwolF/FaxM/i4+shMuSx1XvsODMchLvMz1SkAepQpfGmnVcqPr/6NUw4Ha7sQj/SHTYsEqtn4MjeLqptHjwESnG+EtG9x2ycLCP6hplCFas4XzFg4P2mHfC0mb3T80nx4No="
+    - secure: "eocdZnL7JHu2rOFJCrRpZ7SyoraYEIxytbXtijT9i6bdoqcQTZYapB9T6QroOD/Kd5uEEmHOuqEz6LBL8sLTBI6cJ0MT9C7f2EWJtSJOLQy1xQEooN3ypCrGRzFBFvMsixQ+mpwVLeBJrpUbu+po4PUIqv4op9sol8ggYDyiC8o="
+    - secure: "QRPV8wfmOqEOIvxNzGmQMLydwLcfzLytfoJD9ctsatDRjr6TzejuWIPkDbwGRSUowjrdZCEcxD3Rt3AcRDlgEEaTUDLyaZaBjJktXVgWQaZf/OzW29lkFt7gdbh2qEetG8FltoKnt12ZvQza1VHPzYbRHLkfKaV1E2tcdI01jnY="
